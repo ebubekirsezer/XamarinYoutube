@@ -32,6 +32,7 @@
                             <ff:CachedImage Grid.Row="0"
                                             Source="{Binding VideoPicture}"
                                             Aspect="AspectFill"
+                                            HeightRequest="200"
                                             VerticalOptions="Fill"
                                             HorizontalOptions="Fill"/>
                                 <Label Text="{Binding VideoTime}"
