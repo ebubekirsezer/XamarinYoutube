@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinYoutube.Views.HomeTabbedViews.HomePage"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             Title="Ana Sayfa"
+            BackgroundColor="{StaticResource defaultBlackColor}">
+    <ContentPage.IconImageSource>
+        <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf015;"/>
+    </ContentPage.IconImageSource>
+
+    <ScrollView>
+        <ListView ItemsSource="{Binding .}"
+                  Margin="0,10,0,0"
+                  BackgroundColor="Transparent"
+                  x:Name="listYoutubeVideos"
+                  HasUnevenRows="True"
+                  VerticalScrollBarVisibility="Never"
+                  ItemSelected="listYoutubeVideos_ItemSelected"
+                  SeparatorVisibility="None"
+                  VerticalOptions="Fill"
+                  HorizontalOptions="Center">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="0,5,0,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ff:CachedImage Grid.Row="0"
+                                            Source="{Binding VideoPicture}"
+                                            Aspect="AspectFill"
+                                            VerticalOptions="Fill"
+                                            HorizontalOptions="Fill"/>
+                                <Label Text="{Binding VideoTime}"
+                                       BackgroundColor="Black"
+                                       Grid.Row="0"
+                                       Margin="15"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="End"
+                                       TextColor="White"
+                                       FontSize="Small"/>                                
+                            <Grid Grid.Row="1"
+                                  VerticalOptions="Center"
+                                  HorizontalOptions="Center"
+                                  Margin="10,0,10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!--Profile Picture-->
+                                <ff:CachedImage Source="{Binding VideoProfilePicture}"
+                                                VerticalOptions="Start"
+                                                Grid.Column="0"
+                                                WidthRequest="40"
+                                                HeightRequest="40"
+                                                Aspect="AspectFit">
+                                    <ff:CachedImage.Transformations>
+                                        <ffTransformations:RoundedTransformation Radius="240"/>
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
+                                <!--Video Name and Details-->
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding VideoTitle}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           Grid.Row="0"
+                                           FontSize="14"
+                                           TextColor="White"/>
+                                    <StackLayout Orientation="Horizontal"
+                                                 Grid.Row="1">
+                                        <Label TextColor="{StaticResource defaultGrayColor}"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Start"
+                                               LineBreakMode="TailTruncation"
+                                               FontSize="Micro">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding VideoProfileName}"/>
+                                                    <Span Text=" . "/>
+                                                    <Span Text="{Binding VideoShownCount}"/>
+                                                    <Span Text=" görüntülenme . "/>
+                                                    <Span Text="{Binding VideoSharingDay}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
+                                <Label Text="&#xf142;"
+                                       FontFamily="{StaticResource FontAwesomeSolid}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End"
+                                       TextColor="{StaticResource defaultGrayColor}"
+                                       Grid.Column="2"/>
+                            </Grid>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ScrollView>
+
+</ContentPage>
